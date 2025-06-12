@@ -1,0 +1,41 @@
+<!doctype html>
+<head>
+    <link href="./assets/styles/font.css" rel="stylesheet">
+    <link href="./assets/styles/style.css" rel="stylesheet">
+</head>
+<body>
+    <h1>
+        <span style="font-weight: 700; color: #FFF;">VANTAGE</span>
+        <span style="font-weight: 600; color: #9f9f9f;">POINT</span>
+    </h1>
+
+    <script src="./assets/libraries/p5.min.js"></script>
+    <script src="./assets/libraries/vanta.topology.min.js"></script>
+    <script>
+        let vantaEffect;
+        function initVanta() {
+        if (vantaEffect) vantaEffect.destroy();
+        vantaEffect = VANTA.TOPOLOGY({
+            el: "body",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            backgroundColor: 0x101015,
+            color: 0x0d6690
+        });
+        }
+
+        // Safe init after page is ready
+        window.addEventListener("DOMContentLoaded", initVanta);
+
+        // Optional: reinit on resize if still buggy
+        window.addEventListener("resize", () => {
+        clearTimeout(window.__vantaTimeout);
+        window.__vantaTimeout = setTimeout(initVanta, 250);
+        });
+    </script>
+</body>
